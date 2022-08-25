@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class GasNom(PipelineScraper):
     source = 'gasnom'
-    source_extensions = ['kinetica', 'perryville', 'cadeville']
+    source_extensions = ['kinetica', 'perryville', 'cadeville', 'eastcheyenne', 'kde', 'spirestoragewest', 'leafriver', 'ugi']
     base_api_url = 'http://www.gasnom.com/ip/'
     post_data_url = 'http://www.gasnom.com/ip/{}/OAC.cfm'
     current_post_date = date.today().strftime('%m/%d/%Y')
