@@ -1,5 +1,0 @@
-TSP Name,TSP,Location,Location_Name,Location_Zone,Loc_Purp,All_Qty_Avail,Loc/QTI,Flow_Ind,IT,Design_Capacity,Operational_Capacity,TSQ,OAC,Eff_Gas_Day/Time,CycleDesc,Posting_Date/Time,Measurement_Basis,Pressure_Base
-Perryville Gas Storage LLC,829608368,4235,Columbia Gulf Mainline             ,,SB,Y,STQ,BD,Y,500000,500000,25163,474837,08/25/2022 09:00:00 AM,Evening,08/24/2022 09:05:00 PM,Million BTUs (DTH),14.73 psia
-Perryville Gas Storage LLC,829608368,822033/333,EGT Header Line CP                 ,,SB,Y,STQ,BD,Y,600000,600000,-29332,570668,08/25/2022 09:00:00 AM,Evening,08/24/2022 09:05:00 PM,Million BTUs (DTH),14.73 psia
-Perryville Gas Storage LLC,829608368,822033/333,EGT Header Line CP                 ,,SB,Y,STQ,BD,Y,600000,600000,-29332,570668,08/25/2022 09:00:00 AM,Timely,08/24/2022 05:05:00 PM,Million BTUs (DTH),14.73 psia
-Perryville Gas Storage LLC,829608368,4235,Columbia Gulf Mainline             ,,SB,Y,STQ,BD,Y,500000,500000,25163,474837,08/25/2022 09:00:00 AM,Timely,08/24/2022 05:05:00 PM,Million BTUs (DTH),14.73 psia
