@@ -24,7 +24,6 @@ class GasNom(PipelineScraper):
         'Accept-Language': 'en-US,en;q=0.9',
         'Cache-Control': 'max-age=0',
         'Connection': "keep-alive",
-        'Content-Length': '71',
         'Content-Type': 'application/x-www-form-urlencoded',
         'Host': 'www.gasnom.com',
         'Origin': 'http://www.gasnom.com',
