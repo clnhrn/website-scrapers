@@ -16,7 +16,6 @@ class GasNom(PipelineScraper):
     source_extensions = ['kinetica', 'perryville', 'cadeville', 'eastcheyenne', 'kde', 'spirestoragewest', 'leafriver', 'ugi']
     base_api_url = 'http://www.gasnom.com/ip/'
     post_data_url = 'http://www.gasnom.com/ip/{}/OAC.cfm'
-    current_post_date = date.today().strftime('%m/%d/%Y')
 
     post_page_headers = {
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -31,19 +30,26 @@ class GasNom(PipelineScraper):
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36v'
     }
 
+    payload = {
+        'qry': '1',
+        'B1': 'Download'
+    }
+
     def __init__(self, job_id):
         PipelineScraper.__init__(self, job_id, web_url=self.base_api_url, source=self.source)
 
     def get_payload(self, post_date: date = None):
 
-        payload = {
-            'qry': '1',
-            'frmEffectiveDt': self.current_post_date,
-            'FRMENDDT': self.current_post_date,
-            'B1': 'Download'
-        }
+        if post_date is None:
+            dates = {'frmEffectiveDt': date.today().strftime('%m/%d/%Y'),
+                     'FRMENDDT': date.today().strftime('%m/%d/%Y')}
+        else:
+            dates = {'frmEffectiveDt': post_date.strftime('%m/%d/%Y'),
+                     'FRMENDDT': post_date.strftime('%m/%d/%Y')}
 
-        return payload
+        self.payload.update(dates)
+
+        return self.payload
 
     def start_scraping(self, post_date: date = None):
         """
@@ -53,7 +59,7 @@ class GasNom(PipelineScraper):
         main_df = pd.DataFrame()
         for extension in self.source_extensions:
             try:
-                logger.info('Scraping %s pipeline gas for post date: %s', self.source, self.current_post_date)
+                logger.info('Scraping %s pipeline gas for post date: %s', self.source, post_date)
                 payload = self.get_payload(post_date)
                 response = self.session.post(self.post_data_url.format(extension), data=payload,
                                              headers=self.post_page_headers)
@@ -83,6 +89,9 @@ def back_fill_pipeline_date():
 
 def main():
     scraper = GasNom(job_id=str(uuid.uuid4()))
+    # test for custom date
+    scraper.start_scraping(date.fromisoformat('2022-07-15'))
+    # for current date
     scraper.start_scraping()
     scraper.scraper_info()
 
