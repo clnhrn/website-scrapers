@@ -5,7 +5,7 @@ import logging
 
 import pandas as pd
 
-from scrapers import PipelineScraper
+from scraper import PipelineScraper
 
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
